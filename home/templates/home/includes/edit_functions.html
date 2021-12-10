@@ -1,0 +1,50 @@
+<script>
+    $(document).ready(function () {
+
+
+        // Edit home page bg image
+        $('.homepage-bg-image').dblclick(function () {
+            $('.side-edit-box, .close-edit-box').fadeIn()
+            $('.side-edit-box').fadeIn(1000).html('<iframe class="edit-frame" src="/superadmin/page_customisations/homepagecustomisation/2/change/" height="100%" width="700" ></iframe>')
+        })
+        $('.close-edit-box').click(function () {
+            $('.side-edit-box, .close-edit-box').fadeOut()
+            $('.side-edit-box').html('')
+
+        });
+
+        // Edit home page bg image
+        $('.main-page-text').dblclick(function () {
+            $('.side-edit-box, .close-edit-box').fadeIn()
+            $('.side-edit-box').fadeIn(1000).html('<iframe class="edit-frame" src="/superadmin/page_customisations/homepagecustomisation/1/change/#/tab/module_1/" height="100%" width="700" ></iframe>')
+        })
+        $('.close-edit-box').click(function () {
+            $('.side-edit-box, .close-edit-box').fadeOut()
+            $('.side-edit-box').html('')
+
+        });
+
+        // Edit CTA card
+        $('.cta-card').dblclick(function () {
+            $('.side-edit-box, .close-edit-box').fadeIn()
+            $('.side-edit-box').fadeIn(1000).html('<iframe class="edit-frame" src="/superadmin/page_customisations/ctacard/" height="100%" width="700" ></iframe>')
+        })
+        $('.close-edit-box').click(function () {
+            $('.side-edit-box, .close-edit-box').fadeOut()
+            $('.side-edit-box').html('')
+
+        });
+
+        // Edit CTA banner
+        $('.cta-banner').dblclick(function () {
+            $('.side-edit-box, .close-edit-box').fadeIn()
+            $('.side-edit-box').fadeIn(1000).html('<iframe class="edit-frame" src="/superadmin/page_customisations/ctabanner/1/change/#/tab/module_1/" height="100%" width="700" ></iframe>')
+        })
+        $('.close-edit-box').click(function () {
+            $('.side-edit-box, .close-edit-box').fadeOut()
+            $('.side-edit-box').html('')
+
+        });
+
+    });
+</script>

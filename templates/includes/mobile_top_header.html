@@ -1,0 +1,145 @@
+{% load static %}
+
+<li class="list-inline-item">
+    <a class="text-black nav-link d-block d-lg-none" href="#" id="mobile-search" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <div class="text-center">
+            <div>
+                {% for y in global_styles %}
+                {% for x in header_customisation %}
+                <i class="{% if y.do_not_display or x.do_not_display %}
+                                do-not-display {% else %} feathericon {% endif %}"
+                    style="color: {{ y.all_icon_colors }} !important;" data-feather="search">
+                </i>
+            </div>
+            <p class="{% if x.do_not_display %}
+            do-not-display {% else %} my-0 {% endif %}" style="color: {{ y.base_font_color }} !important;">
+                Search
+            </p>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </a>
+    <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
+        <form class="form" method="GET" action="{% url 'products' %}">
+            <div class="input-group w-100">
+                <input class="{% if x.do_not_display %}
+                do-not-display {% else %} form-control border border-black rounded-0 {% endif %}"
+                    style="border: 1px solid {{ x.search_icon_color }} !important;" type="text" name="q"
+                    placeholder="Search our site">
+                <div class="input-group-append">
+                    <button class="{% if x.do_not_display %}
+                    do-not-display {% else %} form-control form-control btn border rounded-0 {% endif %}" style="background-color: {{ x.search_icon_background_color }} !important;
+                        border: 1px solid {{ x.search_icon_color }} !important" type="submit">
+                        {% for x in header_customisation %}
+                        <span class="icon">
+                            <i class="{% if x.do_not_display %}
+                            do-not-display {% else %} fas fa-search {% endif %}"
+                                style="color: {{ x.search_icon_color }} !important;"></i>
+                        </span>
+                        {% endfor %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</li>
+
+<li class="list-inline-item dropdown">
+    <a class="text-black nav-link d-block d-lg-none dropdown-toggle" href="{% url 'about' %}">
+        <div class="text-center">
+            {% for y in global_styles %}
+            {% if request.get_full_path == '/about/' %}
+            {% else %}
+            <div>
+                <i class="{% if y.do_not_display or x.do_not_display %}
+                do-not-display {% else %} feathericon {% endif %}" style="color: {{ y.all_icon_colors }} !important;"
+                    data-feather="book-open">
+                </i>
+            </div>
+            <p class="{% if x.do_not_display or y.do_not_display %}
+            do-not-display {% else %} my-0 {% endif %}" style="color: {{ y.base_font_color }} !important;">
+                About
+            </p>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </a>
+    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+        {% if request.user.is_superuser %}
+        <a href="/superadmin" class="dropdown-item">
+            <img src="{% static 'images/superadminicon.png' %}" class="mr-1" style="height: 16px !important;">
+            Super Admin
+        </a>
+        {% if request.user.is_authenticated %}
+        <a href="/admin" class="dropdown-item">Website Admin</a>
+        <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+        {% endif %}
+    </div>
+</li>
+<li class="list-inline-item dropdown">
+    <a class="text-black nav-link d-block d-lg-none dropdown-toggle" href="{% url 'products' %}" id="user-options"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="text-center">
+            {% for x in header_customisation %}
+            {% for y in global_styles %}
+            <div>
+                <i class="{% if y.do_not_display %}
+                                do-not-display {% else %} feathericon {% endif %}"
+                    style="color: {{ y.all_icon_colors }} !important;" data-feather="user">
+                </i>
+            </div>
+            <p class="{% if y.do_not_display %}
+           do-not-display {% else %} my-0 {% endif %}" style="color: {{ y.base_font_color }} !important;">
+                My Account
+            </p>
+
+        </div>
+    </a>
+    <div class="{% if y.do_not_display %}
+    do-not-display {% else %} dropdown-menu border-0 {% endif %}"
+        style="background-color: {{ y.dropdown_menu_background_color }} !important;" aria-labelledby="user-options">
+        {% if request.user.is_superuser %}
+        <a href="/superadmin" class="{% if y.do_not_display %}
+        do-not-display {% else %} dropdown-item {% endif %}"
+            style="color: {{ y.dropdown_menu_text_color }}; !important">
+            <img src="{% static 'images/superadminicon.png' %}" class="mr-1" style="height: 16px !important;">
+            Super Admin
+        </a>
+        {% if request.user.is_authenticated %}
+        <a href="/admin" class="{% if y.do_not_display %}
+        do-not-display {% else %} dropdown-item {% endif %}"
+            style="color: {{ y.dropdown_menu_text_color }}; !important">Website Admin</a>
+        <a href="{% url 'add_product' %}" class="{% if y.do_not_display %}
+                do-not-display {% else %} dropdown-item {% endif %}"
+            style="color: {{ y.dropdown_menu_text_color }} !important;">Product Management</a>
+        <a href="{% url 'profile' %}" class="{% if y.do_not_display %}
+                do-not-display {% else %} dropdown-item {% endif %}"
+            style="color: {{ y.dropdown_menu_text_color }} !important;">My Profile</a>
+        <a href="{% url 'account_logout' %}" class="{% if y.do_not_display %}
+                do-not-display {% else %} dropdown-item {% endif %}"
+            style="color: {{ y.dropdown_menu_text_color }} !important;">Logout</a>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'account_signup' %}" class="{% if y.do_not_display %}
+                do-not-display {% else %} dropdown-item {% endif %}"
+            style="color: {{ y.dropdown_menu_text_color }} !important;">Register</a>
+        <a href="{% url 'account_login' %}" class="{% if y.do_not_display %}
+                do-not-display {% else %} dropdown-item {% endif %}"
+            style="color: {{ y.dropdown_menu_text_color }} !important;">Login</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% endfor %}
+</li>
+
+<script>
+    // Feathericons
+    feather.replace()
+</script>

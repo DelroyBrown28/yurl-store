@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/side_edit_box.css' %}">
+
+</head>
+
+{% include 'testimonials/includes/side_edit_box.html' %}
+
+
+
+<body class="testimonials-body">
+    {% for y in global_styles %}
+    <div class="{% if y.do_not_display %}
+do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.base_background_color }} !important;">
+    </div>
+    {% endfor global_styles %}
+
+    <div class="container-fluid" style="height: 100%;">
+
+        <div class="gtco-testimonials">
+            <div class="owl-carousel owl-carousel1 owl-theme">
+
+
+                {% for y in testimonials_customisation %}
+                {% for c in testimonials_push %}
+                {% if c.push_to_testimonial_page == True %}
+                <div>
+                    <div {% if user.is_superuser %} data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Double click to edit testimonial cards" {% endif %}
+                        class="{% if y.do_not_display %}
+                    do-not-display {% else %}  editable edit-testimonial-cards card text-center py-5 {{ y.card_border }} {% endif %}" style="background-color: {{ y.card_background_color }} !important;
+                        border: 2px solid {{ y.card_border_color }};">
+
+                        <div class="card-body">
+                            <h5 class="{% if y.do_not_display %}
+                            do-not-display {% else %} name-header {% endif %}"
+                                style="color: {{ y.card_font_color }} !important;">{{ c.name }} <br />
+                            </h5>
+                            <p class="{% if y.do_not_display %}
+                            do-not-display {% else %} card-text my-5 {% endif %}">
+                                <em class="{% if y.do_not_display %}
+                                do-not-display {% else %} em {% endif %}"
+                                    style="color: {{ y.card_font_color }} !important;">{{ c.your_thoughts|safe }}</em>
+                            </p>
+                            <div class="container mt-5">
+                                <div class="col-md-12" style="color: {{ y.star_rating_color }} !important;">
+
+                                    {% if c.rating == '1' %}
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+                                    {% endif %}
+                                    {% if c.rating == '2' %}
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+
+                                    {% endif %}
+                                    {% if c.rating == '3' %}
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+
+                                    {% endif %}
+                                    {% if c.rating == '4' %}
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="far fa-star mx-2" style="font-size:25px;"></i>
+
+                                    {% endif %}
+                                    {% if c.rating == '5' %}
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    <i class="fas fa-star mx-2" style="font-size:25px;"></i>
+                                    {% endif %}
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    {% if submitted %}
+    <div class="row flexed mt-5 h-100 form-sent-screen">
+        <div class="col-md-12 text-center">
+            <h3>THANKS FOR SHARING WITH US</h3>
+            <p>CHECK OUT WHAT OTHER PRODUCTS WE HAVE IN STORE</p>
+            <a href="{% url 'products' %}" class="testimonial-sent-btn">PRODUCTS</a>
+
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        {% for x in testimonials_customisation %}
+        <div class="col-md-12 text-center">
+            <a href="#testimonialForm" id="testimonialForm" type="button" class="{% if x.do_not_display %}
+            do-not-display {% else %} testimonial-form-btn {{ x.drop_to_form_border }} {% endif %}" style="background-color: {{ x.drop_to_form_background_color }} !important;
+                color: {{ x.drop_to_form_label_color }} !important;
+                border-color: {{ x.drop_to_form_border_color }} !important;">
+                <small> <i class="{% if x.do_not_display %}
+                    do-not-display {% else %} fas fa-arrow-down {% endif %}"
+                        style="color: {{ x.icon_color }} !important;"></i> {{ x.drop_to_form_label }} <i
+                        class="{% if x.do_not_display %}
+                    do-not-display {% else %} fas fa-arrow-down {% endif %}"
+                        style="color: {{ x.icon_color }} !important;"></i></small>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="container-fluid p-0">
+        {% for x in testimonials_customisation %}
+        <div class="{% if x.do_not_display %}
+            do-not-display {% else %} testimonial-form-wrap flexed col-md-12 {% endif %}"
+            style="background-color: {{ x.form_background_color }} !important;">
+
+            <form action="/testimonials/" method="POST" class="{% if x.do_not_display %}
+            do-not-display {% else %} p-5 col-md-12 testimonial-form {% endif %}">
+                {% csrf_token %}
+                <h1 class="{% if x.do_not_display %}
+            do-not-display {% else %} w-100 my-3 text-center {% endif %}"
+                    style="color: {{ x.form_font_color }} !important;">
+                    {{ x.form_title|safe }}
+                </h1>
+                <div class="{% if x.do_not_display %}
+            do-not-display {% else %} flexed my-5 {% endif %}"
+                    style="color: {{ x.form_font_color }} !important;">
+                    {{ x.testimonial_form_blurb|safe }}
+                </div>
+
+                <p class="testimonial-form-inputs">
+                    <input type="text" name="name"
+                        class="{% if x.do_not_display %}
+                        do-not-display {% else %} form-control col-md-12 input-name {{x.form_field_borders}} {% endif %}" style="border-bottom: 2px solid {{ x.form_field_border_color }};
+                        background-color: {{x.form_field_background_color}} !important;
+                        color: {{x.form_field_text_color}};" placeholder="Name" maxlength="100" required=""
+                        id="id_name">
+                </p>
+
+                <p class="testimonial-form-inputs">
+                    <input type="text" name="email"
+                        class="{% if x.do_not_display %}
+                        do-not-display {% else %} input-email form-control col-md-12 {{x.form_field_borders}} {% endif %}" style="border-bottom: 2px solid {{ x.form_field_border_color }};
+                        background-color: {{x.form_field_background_color}} !important;
+                        color: {{x.form_field_text_color}};" placeholder="Email" maxlength="100" id="id_email">
+                </p>
+                <p class="testimonial-form-inputs">
+                    <textarea name="your_thoughts" resize="false" cols="40" rows="10"
+                        class="{% if x.do_not_display %}
+                        do-not-display {% else %} input-thoughts form-control col-md-12 {{x.form_field_borders}} {% endif %}" style="border: 2px solid {{ x.form_field_border_color }};
+                        background-color: {{x.form_field_background_color}} !important;
+                        color: {{x.form_field_text_color}};" placeholder="Your Thoughts?" maxlength="1000" required=""
+                        id="id_your_thoughts" spellcheck="false">
+                        </textarea>
+                </p>
+                <p class="testimonial-form-inputs">
+
+            
+
+
+                    <input type="number" name="rating"
+                        class="{% if x.do_not_display %}
+                        do-not-display {% else %} input-rating form-control col-md-1 rating-field {{x.form_field_borders}} {% endif %}" style="border-bottom: 2px solid {{ x.form_field_border_color }};
+                        background-color: {{x.form_field_background_color}} !important;
+                        color: {{x.form_field_text_color}} !important;" placeholder="Rate us out of 5" maxlength="1"
+                        id="id_rating">
+                </p>
+
+                {% include 'testimonials/includes/form_placeholder_styles.html' %}
+
+                <input
+                    class="{% if x.do_not_display %}
+                    do-not-display {% else %} testimonial-form-submit-btn text-center p-0 {{ x.add_button_border }} {% endif %}"
+                    style="border: 1px solid {{ x.submit_button_border_color }};
+                    background-color: {{ x.submit_button_background_color }} !important;
+                    color: {{ x.submit_button_label_color }} !important;" type="submit"
+                    value="{{ x.submit_button_label }}">
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+
+    {% include "includes/footer.html" %}
+    {% include "testimonials/includes/testimonial_edit_functions.html" %}
+
+</body>
+
+<script>
+    (function () {
+        "use strict";
+
+        var carousels = function () {
+            $(".owl-carousel1").owlCarousel({
+                loop: true,
+                center: true,
+                dots: false,
+                margin: 0,
+                responsiveClass: true,
+                nav: false,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    680: {
+                        items: 2,
+                        nav: false,
+                        loop: false
+                    },
+                    1000: {
+                        items: 3,
+                        nav: true
+                    }
+                }
+            });
+        };
+
+        (function ($) {
+            carousels();
+        })(jQuery);
+    })();
+
+    $(document).ready(function () {
+        $('#myModal').modal({
+            show: false,
+        })
+    })
+
+</script>
+{% endblock content %}

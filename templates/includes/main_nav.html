@@ -1,0 +1,83 @@
+{% block content %}
+
+
+
+
+<div class="collapse navbar-collapse" id="main-nav">
+
+    {% for x in header_customisation %}
+    {% for y in global_styles %}
+    <a class="{% if y.do_not_display or x.do_not_display %}
+    do-not-display {% else %} logo-font font-weight-bold nav-link text-black {% endif %}"
+        style="color: {{ y.base_font_color }} !important;" href="/">
+        <i class="{% if y.do_not_display %}
+        do-not-display {% else %} fas fa-home mr-2 {% endif %}" style="color: {{ y.all_icon_colors }};"></i>
+        Home
+
+
+        <a href="{% url 'products' %}" class="{% if y.do_not_display or x.do_not_display %}
+        do-not-display {% else %} logo-font nav-link {% endif %}" style="color: {{ y.base_font_color }} !important;">
+            All Products <span class="mx-2">|</span>
+        </a>
+
+
+
+        <!-- {% comment %} <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                {% for c in categories_processor|slice:":5" %}
+                <li>
+                    <a class="{% if y.do_not_display or x.do_not_display %}
+        do-not-display {% else %} logo-font nav-link text-black {% endif %}"
+                        href="{% url 'products' %}?category={{ c.url_name }}"
+                        style="color: {{ y.base_font_color }} !important;">
+                        {{ c.category_name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div> {% endcomment %} -->
+
+
+
+
+         {% for c in categories_processor|slice:":5" %}
+        <a class="{% if y.do_not_display or x.do_not_display %}
+        do-not-display {% else %} logo-font nav-link text-black {% endif %}"
+            href="{% url 'products' %}?category={{ c.url_name }}" style="color: {{ y.base_font_color }} !important;">
+            {{ c.category_name }}
+        </a>
+
+        {% endfor %}
+
+        <div class="row px-4 mt-3 small-banner-btn-wrap__mobile flexed">
+            <a href="{{ x.banner_button_url_link_1 }}" class="{% if x.do_not_display %}
+        do-not-display {% else %} my-1 small-banner-btns__mobile flexed {{ x.button_border }} {% endif %}" style="background-color: {{ x.mobile_banner_button_background_color }} !important;
+            color: {{ x.mobile_banner_button_label_color }} !important;
+            border: 2px solid {{ x.mobile_button_border_color }} !important;">
+                {{ x.banner_button_label_1 }}
+            </a>
+            <a href="{{ x.banner_button_url_link_2 }}" class="{% if x.do_not_display %}
+        do-not-display {% else %} my-1 small-banner-btns__mobile flexed {{ x.button_border }} {% endif %}" style="background-color: {{ x.mobile_banner_button_background_color }} !important;
+            color: {{ x.mobile_banner_button_label_color }} !important;
+            border: 2px solid {{ x.mobile_button_border_color }} !important;">
+                {{ x.banner_button_label_2 }}
+            </a>
+
+        </div>
+
+    </a>
+    {% endfor %}
+    {% endfor %}
+</div>
+
+
+
+
+
+
+
+{% endblock content %}

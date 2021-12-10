@@ -1,0 +1,22 @@
+<script>
+    $(document).ready(function () {
+
+        
+
+        // Edit about page title and blurb
+        $('.edit-testimonial-cards').dblclick(function () {
+            $('.side-edit-box, .close-edit-box').fadeIn()
+            $('.side-edit-box').fadeIn(1000).html('<iframe class="edit-frame" src="/superadmin/page_customisations/testimonialspagecustomisation/1/change/#/tab/module_1/" height="100%" width="700" ></iframe>')
+        })
+        $('.close-edit-box').click(function () {
+            $('.side-edit-box, .close-edit-box').fadeOut()
+            $('.side-edit-box').html('')
+
+        });
+
+     
+
+    });
+
+
+</script>

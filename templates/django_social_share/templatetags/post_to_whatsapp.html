@@ -1,0 +1,8 @@
+{% for y in global_styles %}
+<div class="whatsapp-this">
+    <a href="{{ whatsapp_url }}" class="{% if y.do_not_display %}
+                                    do-not-display {% else %} {{ link_class }} {% endif %}"
+        style='color: {{ y.all_icon_colors }} !important;' target="_blank">{{link_text}}</a>
+</div>
+
+{% endfor %}

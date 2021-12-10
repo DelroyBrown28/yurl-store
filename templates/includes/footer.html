@@ -1,0 +1,171 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+</head>
+
+{% for x in footer_customisation %}
+
+
+
+<footer {% if user.is_superuser %} data-bs-toggle="tooltip" data-bs-placement="top" title="Double click to edit Footer"
+    {% endif %} class="{% if x.do_not_display %}
+do-not-display {% else %} ftr editable mt-5 {% endif %}"
+    style="background-color: {{ x.background_color }} !important;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 footer-column">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+
+                        <span class="{% if x.do_not_display %}
+            do-not-display {% else %} footer-title {% endif %}"
+                            style="color: {{ x.footer_title_colors }} !important;">Product</span>
+                    </li>
+                    {% for c in categories_processor|slice:":5" %}
+
+                    <li class="nav-item">
+                        <a class="{% if x.do_not_display %}
+            do-not-display {% else %} nav-link {% endif %}" style="color: {{ x.footer_text_color }} !important;"
+                            href="{% url 'products' %}?category={{ c.url_name }}">{{ c.category_name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-4 footer-column">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <span class="{% if x.do_not_display %}
+            do-not-display {% else %} footer-title {% endif %}"
+                            style="color: {{ x.footer_title_colors }} !important;">Company</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="{% if x.do_not_display %}
+            do-not-display {% else %} nav-link {% endif %}" style="color: {{ x.footer_text_color }} !important;"
+                            href="#">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="{% if x.do_not_display %}
+            do-not-display {% else %} nav-link {% endif %}" style="color: {{ x.footer_text_color }} !important;"
+                            href="#">Testimonials</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 footer-column">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <span class="{% if x.do_not_display %}
+            do-not-display {% else %} footer-title {% endif %}"
+                            style="color: {{ x.footer_title_colors }} !important;">Contact & Support</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="{% if x.do_not_display %}
+                        do-not-display {% else %} nav-link {% endif %}"
+                            style="color: {{ x.footer_text_color }} !important;" href="/testimonials/#testimonialForm">
+                            <i class="{% if x.do_not_display %}
+                        do-not-display {% else %} fas fa-envelope {% endif %}"
+                                style="color: {{ x.footer_icon_colors }} !important;"></i>
+                            Contact us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="{% if x.do_not_display %}
+                        do-not-display {% else %} nav-link {% endif %}"
+                            style="color: {{ x.footer_text_color }} !important;">
+                            <i class="{% if x.do_not_display %}
+                        do-not-display {% else %} fas fa-phone {% endif %}"
+                                style="color: {{ x.footer_icon_colors }} !important;"></i>{{ x.contact_number }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="{% if x.do_not_display %}
+                        do-not-display {% else %} nav-link {% endif %}"
+                            style="color: {{ x.footer_text_color }} !important;">
+                            <i class="{% if x.do_not_display %}
+                        do-not-display {% else %} fas fa-at {% endif %}"
+                                style="color: {{ x.footer_icon_colors }} !important;"></i>{{ x.email }}</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center"><i class="fas fa-ellipsis-h"></i></div>
+
+        <div class="row text-center">
+            <div class="col-md-4 box">
+                <span class="copyright quick-links">Copyright &copy; Your Website
+                    <script>document.write(new Date().getFullYear())</script>
+                </span>
+            </div>
+            <div class="col-md-4 box">
+                <ul class="list-inline social-buttons">
+                    {% if x.twitter_link %}
+                    <li class="list-inline-item">
+                        <a class="{% if x.do_not_display %}
+                        do-not-display {% else %} social-media-icon {% endif %}"
+                            style="background-color: {{ x.social_media_icon_background_color }} !important;"
+                            href="{{ x.twitter_link }}">
+                            <i class="{% if x.do_not_display %}
+                            do-not-display {% else %} fab fa-twitter {% endif %}"
+                                style="color: {{ x.social_media_icon_colors }} !important;"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if x.instagram_link %}
+                    <li class="list-inline-item">
+                        <a class="{% if x.do_not_display %}
+                        do-not-display {% else %} social-media-icon {% endif %}"
+                            style="background-color: {{ x.social_media_icon_background_color }} !important;"
+                            href="{{ x.instagram_link }}">
+                            <i class="{% if x.do_not_display %}
+                            do-not-display {% else %} fab fa-instagram {% endif %}"
+                                style="color: {{ x.social_media_icon_colors }} !important;"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if x.linkedin_link %}
+                    <li class="list-inline-item">
+                        <a class="{% if x.do_not_display %}
+                        do-not-display {% else %} social-media-icon {% endif %}"
+                            style="background-color: {{ x.social_media_icon_background_color }} !important;"
+                            href="{{ x.linkedin_link }}">
+                            <i class="{% if x.do_not_display %}
+                            do-not-display {% else %} fab fa-linkedin {% endif %}"
+                                style="color: {{ x.social_media_icon_colors }} !important;"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if x.facebook_link %}
+                    <li class="list-inline-item">
+                        <a class="{% if x.do_not_display %}
+                        do-not-display {% else %} social-media-icon {% endif %}"
+                            style="background-color: {{ x.social_media_icon_background_color }} !important;"
+                            href="{{ x.facebook_link }}">
+                            <i class="{% if x.do_not_display %}
+                            do-not-display {% else %} fab fa-facebook {% endif %}"
+                                style="color: {{ x.social_media_icon_colors }} !important;"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+            <div class="col-md-4 box">
+                <ul class="list-inline quick-links">
+                    <li class="list-inline-item">
+                        <a class="{% if x.do_not_display %}
+                        do-not-display {% else %} list-link {% endif %}"
+                            style="color: {{ x.footer_title_colors }} !important;" href="#">Privacy Policy</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="{% if x.do_not_display %}
+                        do-not-display {% else %} list-link {% endif %}"
+                            style="color: {{ x.footer_title_colors }} !important;" href="#">Terms of Use</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endfor %}

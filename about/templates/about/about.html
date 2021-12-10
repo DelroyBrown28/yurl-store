@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/side_edit_box.css' %}">
+
+</head>
+
+{% include 'about/includes/side_edit_box.html' %}
+
+
+
+{% for y in global_styles %}
+
+<div class="{% if y.do_not_display %}
+do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.base_background_color }};"></div>
+
+{% endfor %}
+
+<!-- CONTENTS -->
+
+{% for x in about_page_customisation %}
+{% for y in global_styles %}
+<section {% if user.is_superuser %} data-bs-toggle="tooltip"
+data-bs-placement="bottom" title="Double click to edit title & blurb" {% endif %} class="about-page-title-section editable">
+    <h1 class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} about-page-title text-center {% endif %}" style="color: {{y.base_font_color}};">
+    {{ x.about_page_title }}
+</h1>
+
+<div class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} d-flex justify-content-center about-blurb-wrap {% endif %}"
+    style="color: {{y.base_font_color}};">
+  <em class="text-center about-page-blurb flexed mt-5" style="flex-flow: row;">{{ x.about_page_blurb|safe }}</em>
+</div>
+
+<div class="container flexed">
+    <div class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} text-center mr-3 my-5 {% endif %}" style="color: {{ y.all_icon_colors }};">
+        <a style="color: inherit;" href="#getInTouch" data-bs-toggle="tooltip" data-bs-placement="top"
+            title="Get In Touch"><i class="fas fa-phone-alt"></i></a>
+    </div>
+    <div class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} text-center ml-3 my-5 {% endif %}" style="color: {{ y.all_icon_colors }};">
+        <a style="color: inherit;" href="{% url 'testimonials' %}" data-bs-toggle="tooltip" data-bs-placement="top"
+            title="Testimonials"><i class="fas fa-comments"></i></a>
+    </div>
+</div>
+
+
+<div class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} container {% endif %}">
+    <hr style="background-color: #333;">
+</div>
+</section>
+
+<div {% if user.is_superuser %} data-bs-toggle="tooltip"
+data-bs-placement="bottom" title="Double click to edit content" {% endif %} class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} container my-5 editable edit-content {% endif %}" style="color: {{y.base_font_color}};">
+    <div  class="about-page-content">{{ x.story_of_your_brand|safe }}</div>
+
+    <div class="d-flex justify-content-between my-5">
+        <div class="card left-image" style="width: 45rem;">
+            <img src="{{ x.about_page_left_image.url }}" class="card-img-top" alt="...">
+        </div>
+        <div class="card right-image" style="width: 45rem;">
+            <img src="{{ x.about_page_right_image.url }}" class="card-img-top" alt="...">
+        </div>
+    </div>
+</div>
+
+<div class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} container my-5 {% endif %}">
+    <hr style="background-color: #333;">
+</div>
+
+<section {% if user.is_superuser %} data-bs-toggle="tooltip"
+data-bs-placement="bottom" title="Double click to edit contact title & blurb" {% endif %} class="contact-section">
+    <h1 class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} contact-section-title text-center {% endif %}" style="color: {{y.base_font_color}};">
+    {{ x.contact_section_title }}
+</h1>
+<div class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} d-flex justify-content-center about-blurb-wrap {% endif %}"
+    style="color: {{y.base_font_color}};">
+    <em class="contact-section-blurb my-5">{{ x.contact_section_blurb|safe }}</em>
+</div>
+
+</section>
+
+
+<div id="getInTouch" class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} container d-flex justify-content-center {% endif %}"
+    style="color: {{ y.base_font_color }} !important;">
+
+    <div {% if user.is_superuser %} data-bs-toggle="tooltip"
+    data-bs-placement="bottom" title="Double click to edit contact card" {% endif %} class="{% if x.do_not_display or y.do_not_display %}
+        do-not-display {% else %} card contact-card editable {{ x.contact_card_border }} {% endif %}"
+        style="width: 45rem; background-color: {{ x.contact_card_background_color }} !important; border: 1px solid {{ x.border_color }}; !important;">
+        <img src="{{x.contact_card_image.url}}" class="card-img-top" alt="...">
+        <div class="card-body text-center contact-card-title">
+            <p class="{% if x.do_not_display or y.do_not_display %}
+            do-not-display {% else %} contact-card-title {% endif %}"
+                style="color: {{ x.contact_card_text_color }} !important;">{{ x.contact_card_title }}</p>
+            <div class="{% if x.do_not_display or y.do_not_display %}
+            do-not-display {% else %} contact-card-info {% endif %}"
+                style="color: {{ x.contact_card_text_color }} !important;">{{ x.contact_card_info|safe }}</div>
+        </div>
+        <div class="{% if x.do_not_display or y.do_not_display %}
+        do-not-display {% else %} card-footer px-5 d-flex justify-content-between {% endif %}"
+            style="color: {{ y.all_icon_colors }};">
+            {% if x.twitter_link %}
+            <a style="color: inherit;" href="{{ x.twitter_link }}" target="_blank" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Twitter"><i class="fab fa-twitter"></i></a>
+            {% endif %}
+            {% if x.linkedin_link %}
+            <a style="color: inherit;" href="{{ x.linkedin_link }}" target="_blank" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            {% endif %}
+            {% if x.facebook_link %}
+            <a style="color: inherit;" href="{{ x.facebook_link }}" target="_blank" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            {% endif %}
+            {% if x.instagram_link %}
+            <a style="color: inherit;" href="{{ x.instagram_link }}" target="_blank" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Instagram"><i class="fab fa-instagram"></i></a>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+
+{% include "includes/footer.html" %}
+
+
+{% endfor %}
+{% endfor %}
+
+{% include "about/includes/about_edit_functions.html" %}
+
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
+</script>
+{% endblock content %}

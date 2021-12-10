@@ -1,0 +1,71 @@
+/* 
+==================
+ADD BORDER CLASSES
+==================
+*/
+
+
+.add-border {
+    border: 1px solid !important;
+    border-radius: 0px !important;
+    padding: 10px;
+}
+
+.add-product-card-border {
+    border: 1px solid;
+    border-radius: 0px !important;
+    margin: 0px 2px !important;
+}
+
+.no-border-product-card {
+    border: none !important;
+
+}
+.no-border {
+    border: none !important;
+
+}
+
+
+.action-button-border {
+    border: 1px solid;
+}
+
+.no-border-action-button-border {
+    border: 1px solid transparent !important;
+}
+
+
+.add-contact-card-border {
+    padding: 0px;
+    border: 1px solid;
+    border-radius: 0px !important;
+}
+
+.bottom-border {
+    border-bottom: 1px solid;
+}
+
+.full-border {
+    border: 1px solid !important;
+}
+
+
+
+/* 
+======================
+TEXT ALIGNMENT CLASSES
+======================
+*/
+
+.text-align__left {
+    text-align: left !important;
+}
+
+.text-align__center {
+    text-align: center !important;
+}
+
+.text-align__right {
+    text-align: right !important;
+}
