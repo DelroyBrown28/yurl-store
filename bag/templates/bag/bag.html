@@ -3,12 +3,8 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
+{% include 'includes/header.html' %}
+{% endblock page_header %}
 
 {% block content %}
 {% for y in global_styles %}
@@ -33,12 +29,11 @@ do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.bas
     <div class="row">
         <div class="col">
             {% if bag_items %}
-            <div class="table-responsive rounded">
-                <table class="table table-sm table-borderless">
+
+            <div class="table-responsive">
+                <table class="table table-sm table-borderless" style="background-color: transparent !important;">
                     {% for y in global_styles %}
-                    <thead class="{% if y.do_not_display %}
-                    do-not-display {% else %} text-black {% endif %}"
-                        style="color: {{ y.base_font_color }} !important;">
+                    <thead class="font-weight-bold">
                         <tr>
                             <th scope="col">Product Info</th>
                             <th scope="col"></th>
@@ -129,18 +124,18 @@ do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.bas
                     </tr>
                     {% endfor global_styles %}
                     {% endfor %}
+
                     <tr>
 
 
                         {% for y in global_styles %}
                         <td colspan="5" class="{% if y.do_not_display %}
-                        do-not-display {% else %} pt-5 text-right {% endif %}"
-                            style="color: {{ y.base_font_color }} !important;">
+                        do-not-display {% else %} py-3 mb-3 alt-font text-left bag-page__product-info-banner {% endif %}">
                             <h6><strong>Bag Total: £{{ total|floatformat:2 }}</strong></h6>
                             <h6>Delivery: £{{ delivery|floatformat:2 }}</h6>
                             <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
                             {% if free_delivery_delta > 0 %}
-                            <p class="mb-1 text-danger">
+                            <p class="mb-1 bag-page__free-delivery">
                                 You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong>
                                 more!
                             </p>
@@ -150,7 +145,7 @@ do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.bas
 
                     </tr>
                     <tr>
-                        <td colspan="5" class="text-right">
+                        <td colspan="5" class="text-left">
                             {% for y in global_styles %}
                             <a href="{% url 'products' %}" class="{% if y.do_not_display %}
                             do-not-display {% else %} btn btn-outline-black rounded-0 btn-lg {% endif %}"
@@ -184,7 +179,9 @@ do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.bas
                         </td>
                     </tr>
                 </table>
+
             </div>
+
             {% else %}
             {% for y in global_styles %}
 

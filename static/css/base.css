@@ -48,6 +48,30 @@ textarea {
 
 
 /* 
+========
+BAG PAGE
+========
+*/
+
+
+body>div.container.mb-2.mt-5>div:nth-child(2)>div>div>table>tbody,
+body > div.container.mb-2.mt-5 > div:nth-child(2) > div > div > table > thead {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.bag-page__product-info-banner {
+    background-color: transparent !important;
+    color: #333;
+    
+}
+
+.bag-page__free-delivery {
+    color: red;
+}
+
+
+/* 
 =========
 HOME PAGE
 =========
@@ -108,6 +132,14 @@ body {
     color: #00755F;
     font-style: italic;
 
+
+}
+
+@media (max-width: 480px) {
+
+    .home-page__top-contents {
+        padding: 0 !important;
+    }
 
 }
 
@@ -682,6 +714,15 @@ input::-webkit-inner-spin-button {
     width: 33.33%;
 
 }
+
+@media (max-width: 480px) {
+
+    .category-badge p {
+        width: 100% !important;
+    }
+}
+
+
 
 .btt-button {
     height: 42px;

@@ -7,31 +7,53 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
     do-not-display {% else %} row pt-lg-2 d-none d-lg-flex {% endif %}"
         style="background-color: {{ x.header_background_color }} !important;">
         <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-            <a href="/" {% if user.is_superuser %} data-bs-toggle="tooltip"
-            data-bs-placement="bottom" title="Double click to change header logo" {% endif %} class="nav-link main-logo-link editable">
+            <a href="/" {% if user.is_superuser %} data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Double click to change header logo" {% endif %} class="nav-link main-logo-link editable">
                 <!-- <h2 class="logo-font text-black my-0"><strong>Nue</strong> Store</h2> -->
                 {% for x in header_customisation %}
-                {% if x.header_logo %}
+
+            {% if request.path == '/' %}
+              
+            {% if x.header_logo %}
+            <a href="/">
+
+            <img src="{{ x.header_logo.url }}" class="{% if x.do_not_display %}
+                do-not-display {% else %} header-logo {% endif %}">
+            </a>
+
+            {% endif %}
+            {% else %}
+            <a href="/">
+
                 <img src="{{ x.header_logo.url }}" class="{% if x.do_not_display %}
                     do-not-display {% else %} header-logo {% endif %}">
-                {% endif %}
+                </a>
+            {% for c in categories_processor %}
+            <a href="{% url 'products' %}?category={{ c.url_name }}">
+                <img src="{{ c.category_image.url }}" class="header-logo" data-toggle="tooltip" data-placement="bottom" title="{{ c.category_name }}">
+            </a>
+            {% endfor %}
+            {% endif %}
+
                 {% endfor %}
+
+                  
+
             </a>
         </div>
         <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
             <form method="GET" action="{% url 'products' %}">
                 <div class="input-group w-100">
                     <input class="{% if x.do_not_display %}
-                        do-not-display {% else %} form-control rounded-0 header__search-input {% endif %}"
-                         type="text" name="q"
-                        placeholder="Search our site">
+                        do-not-display {% else %} form-control rounded-0 header__search-input {% endif %}" type="text"
+                        name="q" placeholder="Search our site">
                     <div class="input-group-append">
                         {% for x in header_customisation %}
                         <button class="{% if x.do_not_display %}
                         do-not-display {% else %} form-control btn rounded-0 {% endif %}" type="submit">
                             <span class="icon">
-                                <i {% if user.is_superuser %} data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" title="Double click to edit search icon" {% endif %} class="{% if x.do_not_display %}
+                                <i {% if user.is_superuser %} data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Double click to edit search icon" {% endif %} class="{% if x.do_not_display %}
                                 do-not-display {% else %} feathericon edit-search {% endif %}" data-feather="search">
                                 </i>
                                 {% endfor %}
@@ -46,16 +68,17 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
         <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
 
             <ul class="list-inline list-unstyled text-center text-lg-right my-0" aria-labelledby="dropdownMenuLink">
-                
+
                 <li {% if user.is_superuser %} ondblclick="editIconAndTextColors()" data-bs-toggle="tooltip"
-                data-bs-placement="bottom" title="Double click to edit icon colors & styles" {% endif %} class="list-inline-item editIconAndTextColors editable">
+                    data-bs-placement="bottom" title="Double click to edit icon colors & styles" {% endif %}
+                    class="list-inline-item editIconAndTextColors editable">
                     <a class="text-black nav-link" {% if not user.is_superuser %} href="{% url 'about' %}" {% endif %}>
                         <div class="text-center">
 
                             {% if request.get_full_path == '/about/' %}
                             {% else %}
                             {% for y in global_styles %}
-                  
+
                             <p class="{% if y.do_not_display %}
                             do-not-display {% else %} my-0 {% endif %}"
                                 style="color: {{ y.base_font_color }} !important;">About
@@ -84,13 +107,14 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
                     </div>
                 </li>
                 <li {% if user.is_superuser %} ondblclick="editIconAndTextColors()" data-bs-toggle="tooltip"
-                data-bs-placement="bottom" title="Double click to edit icon colors & styles" {% endif %} class="list-inline-item editIconAndTextColors editable dropdown">
+                    data-bs-placement="bottom" title="Double click to edit icon colors & styles" {% endif %}
+                    class="list-inline-item editIconAndTextColors editable dropdown">
                     <a class="text-black nav-link dropdown-toggle" href="#" id="user-options" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <div class="text-center">
-                                {% for y in global_styles %}
-                        
-                                {% endfor %}
+                            {% for y in global_styles %}
+
+                            {% endfor %}
                             {% for y in global_styles %}
                             <p class="{% if y.do_not_display %}
                             do-not-display {% else %} my-0 {% endif %}"
@@ -136,13 +160,15 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
                 </li>
 
                 <li {% if user.is_superuser %} ondblclick="editIconAndTextColors()" data-bs-toggle="tooltip"
-                data-bs-placement="bottom" title="Double click to edit icon colors & styles" {% endif %} class="list-inline-item editIconAndTextColors editable">
+                    data-bs-placement="bottom" title="Double click to edit icon colors & styles" {% endif %}
+                    class="list-inline-item editIconAndTextColors editable">
                     {% for x in header_customisation %}
                     <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} {% if x.do_not_display %}
-                    do-not-display {% else %} text-black nav-link {% endif %}" {% if not user.is_superuser %} href="{% url 'view_bag' %}" {% endif %}>
+                    do-not-display {% else %} text-black nav-link {% endif %}" {% if not user.is_superuser %}
+                        href="{% url 'view_bag' %}" {% endif %}>
                         <div class="text-center">
                             {% for y in global_styles %}
-                        
+
                             <p class="{% if y.do_not_display %}
                                 do-not-display {% else %} my-0 text-black {% endif %}"
                                 style="color: {{ y.base_font_color }} !important;">
@@ -185,12 +211,17 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
     {% for x in header_customisation %}
     {% for y in global_styles %}
 
- 
+
 
     {% endfor %}
     {% endfor %}
 </header>
 {% endfor %}
 
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+</script>
 
 {% include "includes/edit_functions.html" %}
