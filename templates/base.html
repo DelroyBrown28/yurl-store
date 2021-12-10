@@ -20,7 +20,8 @@
 
     <title>Nue Store {% block extra_title %}{% endblock extra_title %}</title>
     {% block corejs %}
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
         integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -101,11 +102,19 @@
     {% block postloadjs %}
     <script type="text/javascript">
         $('.toast').toast('show');
+        feather.replace()
     </script>
+
+
     {% endblock postloadjs %}
 
 
+
     <script type="text/javascript">
+
+
+
+
         $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
         });

@@ -1132,6 +1132,10 @@ PRODUCTS PAGE
 
 .products-page__product-cards {
     border-bottom: none;
+    transition: 0.3s ease-in-out;
+}
+.products-page__product-cards:hover {
+    opacity: 0.5;
 }
 
 .go-to-products-link {

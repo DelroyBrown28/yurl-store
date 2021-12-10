@@ -12,32 +12,33 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
                 <!-- <h2 class="logo-font text-black my-0"><strong>Nue</strong> Store</h2> -->
                 {% for x in header_customisation %}
 
-            {% if request.path == '/' %}
-              
-            {% if x.header_logo %}
-            <a href="/">
+                {% if request.path == '/' %}
 
-            <img src="{{ x.header_logo.url }}" class="{% if x.do_not_display %}
+                {% if x.header_logo %}
+                <a href="/">
+
+                    <img src="{{ x.header_logo.url }}" class="{% if x.do_not_display %}
                 do-not-display {% else %} header-logo {% endif %}">
-            </a>
+                </a>
 
-            {% endif %}
-            {% else %}
-            <a href="/">
+                {% endif %}
+                {% else %}
+                <a href="/">
 
-                <img src="{{ x.header_logo.url }}" class="{% if x.do_not_display %}
+                    <img src="{{ x.header_logo.url }}" class="{% if x.do_not_display %}
                     do-not-display {% else %} header-logo {% endif %}">
                 </a>
-            {% for c in categories_processor %}
-            <a href="{% url 'products' %}?category={{ c.url_name }}">
-                <img src="{{ c.category_image.url }}" class="header-logo" data-toggle="tooltip" data-placement="bottom" title="{{ c.category_name }}">
-            </a>
-            {% endfor %}
-            {% endif %}
+                {% for c in categories_processor %}
+                <a href="{% url 'products' %}?category={{ c.url_name }}">
+                    <img src="{{ c.category_image.url }}" class="header-logo" data-toggle="tooltip"
+                        data-placement="bottom" title="{{ c.category_name }}">
+                </a>
+                {% endfor %}
+                {% endif %}
 
                 {% endfor %}
 
-                  
+
 
             </a>
         </div>
@@ -79,6 +80,8 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
                             {% else %}
                             {% for y in global_styles %}
 
+                            <i data-feather="book-open"></i>
+
                             <p class="{% if y.do_not_display %}
                             do-not-display {% else %} my-0 {% endif %}"
                                 style="color: {{ y.base_font_color }} !important;">About
@@ -116,6 +119,8 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
 
                             {% endfor %}
                             {% for y in global_styles %}
+                            <i data-feather="user"></i>
+
                             <p class="{% if y.do_not_display %}
                             do-not-display {% else %} my-0 {% endif %}"
                                 style="color: {{ y.base_font_color }} !important;">My Account
@@ -168,6 +173,7 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
                         href="{% url 'view_bag' %}" {% endif %}>
                         <div class="text-center">
                             {% for y in global_styles %}
+                            <i data-feather="shopping-bag"></i>
 
                             <p class="{% if y.do_not_display %}
                                 do-not-display {% else %} my-0 text-black {% endif %}"
@@ -221,7 +227,7 @@ do-not-display {% else %} container-fluid header__header-main {% endif %}">
 <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
-      })
+    })
 </script>
 
 {% include "includes/edit_functions.html" %}

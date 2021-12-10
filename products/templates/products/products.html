@@ -113,14 +113,17 @@ do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.bas
                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                     </a>
                     {% endif %}
-
+                    
                     {% for x in products_page_customisation %}
                     <div class="card-body pb-0 text-left"
-                        style="background-color: {{ x.product_card_background_color }} !important;">
-                        <p class="{% if x.do_not_display %}
-                                do-not-display {% else %} mb-0 alt-font font-weight-bold {% endif %}"
-                            style="color: {{ x.product_card_font_color }};">{{ product.name }}</p>
-                    </div>
+                    style="background-color: {{ x.product_card_background_color }} !important;">
+                    <p class="{% if x.do_not_display %}
+                    do-not-display {% else %} mb-0 alt-font font-weight-bold {% endif %}"
+                    style="color: {{ x.product_card_font_color }};">{{ product.name }}</p>
+                    <p>
+                        {{ product.description|safe }}
+                    </p>
+                </div>
                     {% endfor %}
 
                     <div class="{% if x.do_not_display %}
@@ -128,8 +131,7 @@ do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.bas
                         style="background-color: {{ x.product_card_background_color }} !important;">
                         <div class="row">
                             <div class="col alt-font text-left">
-                                <p class="lead mb-0 font-weight-bold"
-                                    style="font-weight: 300 !important; color: {{ x.product_card_font_color }}">
+                                <p class="lead mb-0 font-weight-bold">
                                     £<span>{{ product.price }}
                                     </span>
                                 </p>
