@@ -27,7 +27,7 @@ do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.bas
 <section {% if user.is_superuser %} data-bs-toggle="tooltip"
 data-bs-placement="bottom" title="Double click to edit title & blurb" {% endif %} class="about-page-title-section editable">
     <h1 class="{% if x.do_not_display or y.do_not_display %}
-do-not-display {% else %} about-page-title text-center {% endif %}" style="color: {{y.base_font_color}};">
+do-not-display {% else %} about-page-title text-center mt-5 {% endif %}" style="color: {{y.base_font_color}};">
     {{ x.about_page_title }}
 </h1>
 
@@ -98,13 +98,11 @@ do-not-display {% else %} container d-flex justify-content-center {% endif %}"
 
     <div {% if user.is_superuser %} data-bs-toggle="tooltip"
     data-bs-placement="bottom" title="Double click to edit contact card" {% endif %} class="{% if x.do_not_display or y.do_not_display %}
-        do-not-display {% else %} card contact-card editable {{ x.contact_card_border }} {% endif %}"
+        do-not-display {% else %} card about-page__contact-card editable {{ x.contact_card_border }} {% endif %}"
         style="width: 45rem; background-color: {{ x.contact_card_background_color }} !important; border: 1px solid {{ x.border_color }}; !important;">
-        <img src="{{x.contact_card_image.url}}" class="card-img-top" alt="...">
-        <div class="card-body text-center contact-card-title">
-            <p class="{% if x.do_not_display or y.do_not_display %}
-            do-not-display {% else %} contact-card-title {% endif %}"
-                style="color: {{ x.contact_card_text_color }} !important;">{{ x.contact_card_title }}</p>
+        
+        <div class="card-body mt-5 text-center alt-font contact-card-title">
+       
             <div class="{% if x.do_not_display or y.do_not_display %}
             do-not-display {% else %} contact-card-info {% endif %}"
                 style="color: {{ x.contact_card_text_color }} !important;">{{ x.contact_card_info|safe }}</div>
