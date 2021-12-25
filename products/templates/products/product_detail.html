@@ -149,7 +149,7 @@ do-not-display {% else %} overlay {% endif %}" style="background-color: {{ y.bas
                 {% for y in global_styles %}
                 <p class="{% if y.do_not_display %}
                 do-not-display {% else %} mt-3 {% endif %}" style="color: {{ y.base_font_color }} !important;">
-                    {{ product.description|safe }}
+                    {{ product.product_display_description|safe }}
                 </p>
                 <hr>
                 <div class="socials d-flex">

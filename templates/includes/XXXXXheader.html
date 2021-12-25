@@ -1,0 +1,233 @@
+{% load i18n static %}
+
+{% for x in header_customisation %}
+<header class="{% if x.do_not_display or y.do_not_display %}
+do-not-display {% else %} container-fluid header__header-main {% endif %}">
+    <div id="topnav" class="{% if x.do_not_display %}
+    do-not-display {% else %} row pt-lg-2 d-none d-lg-flex {% endif %}"
+        style="background-color: {{ x.header_background_color }} !important;">
+        <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+            <a href="/" {% if user.is_superuser %} data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Double click to change header logo" {% endif %} class="nav-link main-logo-link editable">
+                <!-- <h2 class="logo-font text-black my-0"><strong>Nue</strong> Store</h2> -->
+                {% for x in header_customisation %}
+
+                {% if request.path == '/' %}
+
+                {% if x.header_logo %}
+                <a href="/">
+
+                    <img src="{{ x.header_logo.url }}" class="{% if x.do_not_display %}
+                do-not-display {% else %} header-logo {% endif %}">
+                </a>
+
+                {% endif %}
+                {% else %}
+                <a href="/">
+
+                    <img src="{{ x.header_logo.url }}" class="{% if x.do_not_display %}
+                    do-not-display {% else %} header-logo {% endif %}">
+                </a>
+                {% for c in categories_processor %}
+                <a href="{% url 'products' %}?category={{ c.url_name }}">
+                    <img src="{{ c.category_image.url }}" class="header-logo" data-toggle="tooltip"
+                        data-placement="bottom" title="{{ c.category_name }}">
+                </a>
+                {% endfor %}
+                {% endif %}
+
+                {% endfor %}
+
+
+
+            </a>
+        </div>
+        <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <form method="GET" action="{% url 'products' %}">
+                <div class="input-group w-100">
+                    <input class="{% if x.do_not_display %}
+                        do-not-display {% else %} form-control rounded-0 header__search-input {% endif %}" type="text"
+                        name="q" placeholder="Search our site">
+                    <div class="input-group-append">
+                        {% for x in header_customisation %}
+                        <button class="{% if x.do_not_display %}
+                        do-not-display {% else %} form-control btn rounded-0 {% endif %}" type="submit">
+                            <span class="icon">
+                                <i {% if user.is_superuser %} data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Double click to edit search icon" {% endif %} class="{% if x.do_not_display %}
+                                do-not-display {% else %} feathericon edit-search {% endif %}" data-feather="search">
+                                </i>
+                                {% endfor %}
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+
+            <ul class="list-inline list-unstyled text-center text-lg-right my-0" aria-labelledby="dropdownMenuLink">
+
+                <li {% if user.is_superuser %} ondblclick="editIconAndTextColors()" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Double click to edit icon colors & styles" {% endif %}
+                    class="list-inline-item editIconAndTextColors editable">
+                    <a class="text-black nav-link" {% if not user.is_superuser %} href="{% url 'about' %}" {% endif %}>
+                        <div class="text-center">
+
+                            {% if request.get_full_path == '/about/' %}
+                            {% else %}
+                            {% for y in global_styles %}
+
+                            <i data-feather="book-open"></i>
+
+                            <p class="{% if y.do_not_display %}
+                            do-not-display {% else %} my-0 {% endif %}"
+                                style="color: {{ y.base_font_color }} !important;">About
+                            </p>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </a>
+
+                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                        {% if request.user.is_authenticated %}
+                        <a href="/admin" class="dropdown-item"
+                            style="color: {{ y.dropdown_menu_text_color }} !important">Website Admin</a>
+                        <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+                        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                        {% if request.user.is_superuser %}
+                        <a href="/superadmin" class="dropdown-item">
+                            <img src="{% static 'images/superadminicon.png' %}" style="height: 16px !important;">
+                            Super Admin</a>
+                        {% endif %}
+                        {% else %}
+                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                        {% endif %}
+                    </div>
+                </li>
+                <li {% if user.is_superuser %} ondblclick="editIconAndTextColors()" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Double click to edit icon colors & styles" {% endif %}
+                    class="list-inline-item editIconAndTextColors editable dropdown">
+                    <a class="text-black nav-link dropdown-toggle" href="#" id="user-options" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <div class="text-center">
+                            {% for y in global_styles %}
+
+                            {% endfor %}
+                            {% for y in global_styles %}
+                            <i data-feather="user"></i>
+
+                            <p class="{% if y.do_not_display %}
+                            do-not-display {% else %} my-0 {% endif %}"
+                                style="color: {{ y.base_font_color }} !important;">My Account
+                            </p>
+                            {% endfor %}
+                        </div>
+                    </a>
+
+                    {% for y in global_styles %}
+                    <div class="{% if y.do_not_display %}
+                    do-not-display {% else %} dropdown-menu border-0 {% endif %}"
+                        style="background-color: {{ y.dropdown_menu_background_color }} !important;"
+                        aria-labelledby="user-options">
+                        {% if user.is_superuser or user.is_staff %}
+                        <a href="/superadmin" class="{% if y.do_not_display %}
+                        do-not-display {% else %} dropdown-item {% endif %}"
+                            style="color: {{ y.dropdown_menu_text_color }} !important">
+                            <img src="{% static 'images/superadminicon.png' %}" style="height: 16px !important;">
+                            Super Admin
+                        </a>
+                        <a href="/admin" class="{% if y.do_not_display %}
+                        do-not-display {% else %} dropdown-item {% endif %}"
+                            style="color: {{ y.dropdown_menu_text_color }} !important">Website Admin</a>
+                        <a href="{% url 'add_product' %}" class="{% if y.do_not_display %}
+                        do-not-display {% else %} dropdown-item {% endif %}"
+                            style="color: {{ y.dropdown_menu_text_color }} !important">Product Management</a>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="{% if y.do_not_display %}
+                        do-not-display {% else %} dropdown-item {% endif %}"
+                            style="color: {{ y.dropdown_menu_text_color }} !important">My Profile</a>
+                        <a href="{% url 'account_logout' %}" class="{% if y.do_not_display %}
+                            do-not-display {% else %} dropdown-item {% endif %}"
+                            style="color: {{ y.dropdown_menu_text_color }} !important">Logout</a>
+
+                        {% else %}
+                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </li>
+
+                <li {% if user.is_superuser %} ondblclick="editIconAndTextColors()" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Double click to edit icon colors & styles" {% endif %}
+                    class="list-inline-item editIconAndTextColors editable">
+                    {% for x in header_customisation %}
+                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} {% if x.do_not_display %}
+                    do-not-display {% else %} text-black nav-link {% endif %}" {% if not user.is_superuser %}
+                        href="{% url 'view_bag' %}" {% endif %}>
+                        <div class="text-center">
+                            {% for y in global_styles %}
+                            <i data-feather="shopping-bag"></i>
+
+                            <p class="{% if y.do_not_display %}
+                                do-not-display {% else %} my-0 text-black {% endif %}"
+                                style="color: {{ y.base_font_color }} !important;">
+                                {% if grand_total %}
+                                £{{ grand_total|floatformat:2 }}
+                                {% else %}
+                                £0.00
+                                {% endif %}
+                            </p>
+                            {% endfor %}
+
+                        </div>
+                    </a>
+                    {% endfor %}
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    {% for x in header_customisation %}
+    <div class="{% if x.do_not_display %}
+    do-not-display {% else %} row bg-light {% endif %}"
+        style="background-color: {{ x.header_background_color }} !important;">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
+                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+
+                {% for y in global_styles %}
+                <i class="{% if y.do_not_display %}
+                do-not-display {% else %} fas fa-bars {% endif %}" style="color: {{ y.all_icon_colors }} !important;">
+                </i>
+                {% endfor %}
+            </button>
+            {% include 'includes/mobile_top_header.html' %}
+        </nav>
+    </div>
+    {% endfor %}
+
+    {% for x in header_customisation %}
+    {% for y in global_styles %}
+
+
+
+    {% endfor %}
+    {% endfor %}
+</header>
+{% endfor %}
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+{% include "includes/edit_functions.html" %}

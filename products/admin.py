@@ -18,7 +18,8 @@ class ProductAdmin(admin.ModelAdmin):
                 'name',
                 'category',
                 'price',
-                'description',
+                'product_display_description',
+                'spice_rating',
                 'has_sizes',
                 'in_stock',
                 'is_active',
@@ -38,6 +39,7 @@ class ProductAdmin(admin.ModelAdmin):
         'name',
         'add_to_cta_banner',
         'category',
+        'spice_rating',
     )
     list_display_links = (
         'name',
@@ -45,6 +47,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = (
         'add_to_cta_banner',
         'category',
+        'spice_rating',
     )
     readonly_fields = (
         'created',

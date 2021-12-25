@@ -16,33 +16,22 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-
+    
+    
 
     <title>Nue Store {% block extra_title %}{% endblock extra_title %}</title>
     {% block corejs %}
-    <script src="https://unpkg.com/feather-icons"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
         integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.js"
-        integrity="sha512-zW3wEBCLSIQ6/8E5HhS2x6gq2DSMr/oNVB6O4GtdwE0Nc2/w11di3IfMilwF8OFyg12t4rJ5TegUa7k/hnrTVg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.js"
-        integrity="sha512-oFCsbxZP/K+0EjvkyIHBvC3ft8LZnO+8kljz0RiJN8ffUCeX0LF1G0WlvU3jMJVaoKBrC+I2ohi4BCpKq2ZgXw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
         integrity="sha512-gY25nC63ddE0LcLPhxUJGFxa2GoIyA5FLym4UJqHDEMHjp8RET6Zn/SHo1sltt3WuVtqfyxECP38/daUc/WVEA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"
-        crossorigin="anonymous"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://cdn.tiny.cloud/1/ejfej7wzcg1hib8eew1onmh8d577qbpz8zcxwbb9ldzpk69m/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"></script>
 
     {% endblock corejs %}
-    {% include 'includes/csslinks.html' %}
     {% block extra_css %}
     {% endblock extra_css %}
 
@@ -89,12 +78,11 @@
 
 
     {% block page_header %}
-    {% include 'includes/header.html' %}
     {% endblock page_header %}
 
     {% block content %}
 
-   
+
     {% endblock content %}
 
 
@@ -102,7 +90,6 @@
     {% block postloadjs %}
     <script type="text/javascript">
         $('.toast').toast('show');
-        feather.replace()
     </script>
 
 
@@ -120,7 +107,7 @@
         });
 
         // Feathericons
-        feather.replace()
+        // feather.replace()
 
         // Hide Header on on scroll down
         var didScroll;

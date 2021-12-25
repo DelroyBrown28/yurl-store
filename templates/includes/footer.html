@@ -1,171 +1,61 @@
 {% load static %}
 
-<head>
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-</head>
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="first-item">
+                        <div class="logo">
+                            <img src="media/home_page_images/white-logo.png" alt="hexashop ecommerce templatemo">
+                        </div>
+                        <ul>
+                            <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
+                            <li><a href="#">hexashop@company.com</a></li>
+                            <li><a href="#">010-020-0340</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h4>Shopping &amp; Categories</h4>
+                    <ul>
+                        <li><a href="#">Men’s Shopping</a></li>
+                        <li><a href="#">Women’s Shopping</a></li>
+                        <li><a href="#">Kid's Shopping</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Homepage</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h4>Help &amp; Information</h4>
+                    <ul>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">FAQ's</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Tracking ID</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-12">
+                    <div class="under-footer">
+                        <p>Copyright © 2022 Spicy Rye's Co., Ltd. All Rights Reserved.
 
-{% for x in footer_customisation %}
-
-
-
-<footer {% if user.is_superuser %} data-bs-toggle="tooltip" data-bs-placement="top" title="Double click to edit Footer"
-    {% endif %} class="{% if x.do_not_display %}
-do-not-display {% else %} ftr editable mt-5 {% endif %}"
-    style="background-color: {{ x.background_color }} !important;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 footer-column">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-
-                        <span class="{% if x.do_not_display %}
-            do-not-display {% else %} footer-title {% endif %}"
-                            style="color: {{ x.footer_title_colors }} !important;">Product</span>
-                    </li>
-                    {% for c in categories_processor|slice:":5" %}
-
-                    <li class="nav-item">
-                        <a class="{% if x.do_not_display %}
-            do-not-display {% else %} nav-link {% endif %}" style="color: {{ x.footer_text_color }} !important;"
-                            href="{% url 'products' %}?category={{ c.url_name }}">{{ c.category_name }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col-md-4 footer-column">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <span class="{% if x.do_not_display %}
-            do-not-display {% else %} footer-title {% endif %}"
-                            style="color: {{ x.footer_title_colors }} !important;">Company</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="{% if x.do_not_display %}
-            do-not-display {% else %} nav-link {% endif %}" style="color: {{ x.footer_text_color }} !important;"
-                            href="#">About us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="{% if x.do_not_display %}
-            do-not-display {% else %} nav-link {% endif %}" style="color: {{ x.footer_text_color }} !important;"
-                            href="#">Testimonials</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-4 footer-column">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <span class="{% if x.do_not_display %}
-            do-not-display {% else %} footer-title {% endif %}"
-                            style="color: {{ x.footer_title_colors }} !important;">Contact & Support</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="{% if x.do_not_display %}
-                        do-not-display {% else %} nav-link {% endif %}"
-                            style="color: {{ x.footer_text_color }} !important;" href="/testimonials/#testimonialForm">
-                            <i class="{% if x.do_not_display %}
-                        do-not-display {% else %} fas fa-envelope {% endif %}"
-                                style="color: {{ x.footer_icon_colors }} !important;"></i>
-                            Contact us
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <span class="{% if x.do_not_display %}
-                        do-not-display {% else %} nav-link {% endif %}"
-                            style="color: {{ x.footer_text_color }} !important;">
-                            <i class="{% if x.do_not_display %}
-                        do-not-display {% else %} fas fa-phone {% endif %}"
-                                style="color: {{ x.footer_icon_colors }} !important;"></i>{{ x.contact_number }}</span>
-                    </li>
-                    <li class="nav-item">
-                        <span class="{% if x.do_not_display %}
-                        do-not-display {% else %} nav-link {% endif %}"
-                            style="color: {{ x.footer_text_color }} !important;">
-                            <i class="{% if x.do_not_display %}
-                        do-not-display {% else %} fas fa-at {% endif %}"
-                                style="color: {{ x.footer_icon_colors }} !important;"></i>{{ x.email }}</span>
-                    </li>
-
-                </ul>
+                  
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="text-center"><i class="fas fa-ellipsis-h"></i></div>
-
-        <div class="row text-center">
-            <div class="col-md-4 box">
-                <span class="copyright quick-links">Copyright &copy; Your Website
-                    <script>document.write(new Date().getFullYear())</script>
-                </span>
-            </div>
-            <div class="col-md-4 box">
-                <ul class="list-inline social-buttons">
-                    {% if x.twitter_link %}
-                    <li class="list-inline-item">
-                        <a class="{% if x.do_not_display %}
-                        do-not-display {% else %} social-media-icon {% endif %}"
-                            style="background-color: {{ x.social_media_icon_background_color }} !important;"
-                            href="{{ x.twitter_link }}">
-                            <i class="{% if x.do_not_display %}
-                            do-not-display {% else %} fab fa-twitter {% endif %}"
-                                style="color: {{ x.social_media_icon_colors }} !important;"></i>
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if x.instagram_link %}
-                    <li class="list-inline-item">
-                        <a class="{% if x.do_not_display %}
-                        do-not-display {% else %} social-media-icon {% endif %}"
-                            style="background-color: {{ x.social_media_icon_background_color }} !important;"
-                            href="{{ x.instagram_link }}">
-                            <i class="{% if x.do_not_display %}
-                            do-not-display {% else %} fab fa-instagram {% endif %}"
-                                style="color: {{ x.social_media_icon_colors }} !important;"></i>
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if x.linkedin_link %}
-                    <li class="list-inline-item">
-                        <a class="{% if x.do_not_display %}
-                        do-not-display {% else %} social-media-icon {% endif %}"
-                            style="background-color: {{ x.social_media_icon_background_color }} !important;"
-                            href="{{ x.linkedin_link }}">
-                            <i class="{% if x.do_not_display %}
-                            do-not-display {% else %} fab fa-linkedin {% endif %}"
-                                style="color: {{ x.social_media_icon_colors }} !important;"></i>
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if x.facebook_link %}
-                    <li class="list-inline-item">
-                        <a class="{% if x.do_not_display %}
-                        do-not-display {% else %} social-media-icon {% endif %}"
-                            style="background-color: {{ x.social_media_icon_background_color }} !important;"
-                            href="{{ x.facebook_link }}">
-                            <i class="{% if x.do_not_display %}
-                            do-not-display {% else %} fab fa-facebook {% endif %}"
-                                style="color: {{ x.social_media_icon_colors }} !important;"></i>
-                        </a>
-                    </li>
-                    {% endif %}
-
-                </ul>
-            </div>
-            <div class="col-md-4 box">
-                <ul class="list-inline quick-links">
-                    <li class="list-inline-item">
-                        <a class="{% if x.do_not_display %}
-                        do-not-display {% else %} list-link {% endif %}"
-                            style="color: {{ x.footer_title_colors }} !important;" href="#">Privacy Policy</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a class="{% if x.do_not_display %}
-                        do-not-display {% else %} list-link {% endif %}"
-                            style="color: {{ x.footer_title_colors }} !important;" href="#">Terms of Use</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-
-{% endfor %}
+    </footer>

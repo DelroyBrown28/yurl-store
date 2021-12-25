@@ -37,7 +37,8 @@ class Product(models.Model):
 
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
-    description = RichTextField()
+    product_display_description = RichTextField(default='')
+    spice_rating = models.CharField(max_length=1, null=True, blank=True)
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default='0')
     add_to_cta_banner = models.BooleanField(default=False)

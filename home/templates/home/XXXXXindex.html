@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="px-5 my-5 home-page__top-contents">
+        <div class="container-fluid text-center">
+            <h1 class="display-5 text-center p-0 home-page__yuk-title mt-5"
+                style="font-family: 'Meow Script', cursive;;">Spicy Ryes!</h1>
+            <div class="col-md-12 text-center">
+
+                <p class="col-md-4 fs-4 mx-auto text-center home-page__top-blurb">
+                    From MILD to EXTREMELY WILD<br>
+                    We've got the PERFECT SAUCE for you!
+
+                </p>
+            </div>
+            <!-- <button class="btn btn-primary btn-lg" type="button">Explore</button> -->
+        </div>
+    </div>
+
+    <div class="home-page__card-wrap row mx-5">
+        {% for c in categories_processor|slice:":3" %}
+        <a href="{% url 'products' %}?category={{ c.url_name }}"
+        class="card home-page__card mx-4 mb-5 {% cycle 'mt-0' 'mt-5' %}" style="width: 33.33rem;">
+        <div class="home-page__category-circles">
+        <img src="{{ c.category_image.url }}" class="card-img-top home-page__yuk-card-image" alt="...">
+    </div>
+        <hr style="border: 2px solid #333;">
+        <div class="card-body p-0">
+            <p class="card-text home-page__card-text"><em>{{ c.category_name}}!</em></p>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+
+    </a>
+        {% endfor %}
+    </div>
+    <div class="home-page__what-we-do-wrap flexed row my-5">
+        <div class="col-md-12 text-center">
+            <h5 class="text-center font-weight-bold">WHAT WE DO</h5>
+
+
+
+
+            <div class="home-page__blurb-wrap  py-5">
+
+                <div class="home-page__product-cards flexed redborder">
+                    {% for product in products_processor|slice:':3' %}
+
+                    <div
+                        class="col-sm-6 col-md-6 col-lg-4 col-xl-3 product-cards editable products-page__product-cards">
+
+                        <a {% if user.is_superuser %} {% else %} href="{% url 'product_detail' product.id %}" {% endif %}
+                        class="product-cards-image">
+                        <img class="card-img-top img-fluid" src="{{ product.main_product_image.url }}"
+                            alt="{{ product.name }}">
+                    </a>
+                        <h1 style="color: red">{{product.name}}</h1>
+
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <div class="row my-5 home-page__events-section">
+        <h5 class="text-center w-100 font-weight-bold">UPCOMING EVENTS</h5>
+        <div class="col-md-12 flexed">
+
+            <div class="row row-cols-1 row-cols-md-1 g-4 text-center">
+                <div class="col">
+                    <div class="card home-page__event-cards flexed" style="flex-flow: row;">
+
+                        <div class="col-md-12 card-body alt-font">
+                            <small class="home-page__event-card-small-text">Mon, Apr 9th 2022, 7:05pm</small>
+                            <p class="home-page__event-card-description">London Eats Food Event: Great food and people
+                                and laughter. Bring your entire family</p>
+                            <small class="home-page__event-card-small-text">The Milestone Hotel, 1-3 Kensington Ct,
+                                London</small>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card home-page__event-cards flexed" style="flex-flow: row;">
+
+                        <div class="col-md-12 card-body alt-font">
+                            <small class="home-page__event-card-small-text">Mon, Apr 9th 2022, 7:05pm</small>
+                            <p class="home-page__event-card-description">London Eats Food Event: Great food and people
+                                and laughter. Bring your entire family</p>
+                            <small class="home-page__event-card-small-text">The Milestone Hotel, 1-3 Kensington Ct,
+                                London</small>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card home-page__event-cards flexed" style="flex-flow: row;">
+
+                        <div class="col-md-12 card-body alt-font">
+                            <small class="home-page__event-card-small-text">Mon, Apr 9th 2022, 7:05pm</small>
+                            <p class="home-page__event-card-description">London Eats Food Event: Great food and people
+                                and laughter. Bring your entire family</p>
+                            <small class="home-page__event-card-small-text">The Milestone Hotel, 1-3 Kensington Ct,
+                                London</small>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card home-page__event-cards flexed" style="flex-flow: row;">
+
+                        <div class="col-md-12 card-body alt-font">
+                            <small class="home-page__event-card-small-text">Mon, Apr 9th 2022, 7:05pm</small>
+                            <p class="home-page__event-card-description">London Eats Food Event: Great food and people
+                                and laughter. Bring your entire family</p>
+                            <small class="home-page__event-card-small-text">The Milestone Hotel, 1-3 Kensington Ct,
+                                London</small>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card home-page__event-cards flexed" style="flex-flow: row;">
+
+                        <div class="col-md-12 card-body alt-font">
+                            <small class="home-page__event-card-small-text">Mon, Apr 9th 2022, 7:05pm</small>
+                            <p class="home-page__event-card-description">London Eats Food Event: Great food and people
+                                and laughter. Bring your entire family</p>
+                            <small class="home-page__event-card-small-text">The Milestone Hotel, 1-3 Kensington Ct,
+                                London</small>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card home-page__event-cards flexed" style="flex-flow: row;">
+
+                        <div class="col-md-12 card-body alt-font">
+                            <small class="home-page__event-card-small-text">Mon, Apr 9th 2022, 7:05pm</small>
+                            <p class="home-page__event-card-description">London Eats Food Event: Great food and people
+                                and laughter. Bring your entire family</p>
+                            <small class="home-page__event-card-small-text">The Milestone Hotel, 1-3 Kensington Ct,
+                                London</small>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    {% include "includes/footer.html" %}
+
+</div>
+{% endblock content %}
+
+<script>
+    AOS.init();
+</script>
