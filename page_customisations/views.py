@@ -7,6 +7,16 @@ from .models import (AddTestimonial, HeaderCustomisation,
                      TestimonialsPageCustomisation)
 
 
+
+
+# def home_page_customisation(request):
+#     """Customisation for header contents"""
+#     home_page_customisation = HomePage_Customisation.objects.all()
+#     context = {
+#         'home_page_customisation': home_page_customisation,
+#     }
+#     return render(request, 'home/templates/home/index.html', context)
+
 def header_customisation(request):
     """Customisation for header contents"""
     header_customisation = TestimonialsPageCustomisation.objects.all()

@@ -17,7 +17,7 @@
     <!-- ***** Preloader End ***** -->
 
 
- {% include 'includes/header.html' %}
+    {% include 'includes/header.html' %}
 
     <!-- ***** Main Banner Area Start ***** -->
     <div class="main-banner" id="top">
@@ -25,15 +25,18 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="left-content">
-                        <div class="thumb">
-                            <div class="inner-content">
-                                <h4>We Are Hexashop</h4>
-                                <span>Awesome, clean &amp; creative HTML5 Template</span>
+                        <div class="thumb" style="overflow:hidden;">
+                            {% for p in home_page_styles  %}
+                            <img src="{{ p.left_banner_image.url }}"
+                            class="home-page__left-banner-image" style="filter: brightness(50%);" alt="">
+                            <div class="inner-content home-page__left-banner-inner-content">
+                                <h4>Spicy Rye's</h4>
+                                <span>{{ p.overlaying_text_left|safe }}</span>
                                 <div class="main-border-button">
-                                    <a href="#">Purchase Now!</a>
+                                    <a href="{% url 'products' %}">All Sauces</a>
                                 </div>
                             </div>
-                            <img src="media/home_page_images/left-banner-image.jpg" alt="">
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -43,34 +46,41 @@
                             <div class="col-lg-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
+                                        {% for p in home_page_styles  %}
+                                        <img class="home-page__right-banner-image-1" style="filter: brightness(50%);"
+                                            src="{{ p.right_banner_image_1.url }}">
+                                        {% endfor %}
                                         <div class="inner-content">
-                                            <h4>Women</h4>
-                                            <span>Best Clothes For Women</span>
+                                            <h4>Sauces</h4>
+                                            <span>Pick your spice level</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
-                                                <h4>Women</h4>
+                                                <h4>Sauces</h4>
                                                 <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
                                                 </p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <a href="#">All Sauces</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="media/home_page_images/baner-right-image-01.jpg">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
+                                        {% for p in home_page_styles  %}             
+                                        <img class="home-page__right-banner-image-1" style="filter: brightness(50%);"
+                                            src="{{ p.right_banner_image_2.url }}">
+                                        {% endfor %}
                                         <div class="inner-content">
-                                            <h4>Men</h4>
+                                            <h4>Honeys & Coulis</h4>
                                             <span>Best Clothes For Men</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
-                                                <h4>Men</h4>
+                                                <h4>Honeys & Coulis</h4>
                                                 <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
                                                 </p>
                                                 <div class="main-border-button">
@@ -78,20 +88,23 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="media/home_page_images/baner-right-image-02.jpg">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
+                                        {% for p in home_page_styles  %}             
+                                        <img class="home-page__right-banner-image-1" style="filter: brightness(50%);"
+                                            src="{{ p.right_banner_image_3.url }}">
+                                        {% endfor %}
                                         <div class="inner-content">
-                                            <h4>Kids</h4>
+                                            <h4>Giftsets</h4>
                                             <span>Best Clothes For Kids</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
-                                                <h4>Kids</h4>
+                                                <h4>Giftsets</h4>
                                                 <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
                                                 </p>
                                                 <div class="main-border-button">
@@ -99,20 +112,23 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="media/home_page_images/baner-right-image-03.jpg">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="right-first-image">
                                     <div class="thumb">
+                                        {% for p in home_page_styles  %}             
+                                        <img class="home-page__right-banner-image-1" style="filter: brightness(50%);"
+                                            src="{{ p.right_banner_image_4.url }}">
+                                        {% endfor %}
                                         <div class="inner-content">
-                                            <h4>Accessories</h4>
+                                            <h4>All Sauces</h4>
                                             <span>Best Trend Accessories</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
-                                                <h4>Accessories</h4>
+                                                <h4>All Sauces</h4>
                                                 <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
                                                 </p>
                                                 <div class="main-border-button">
@@ -120,7 +136,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="media/home_page_images/baner-right-image-04.jpg">
                                     </div>
                                 </div>
                             </div>
@@ -138,8 +153,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-heading">
-                        <h2>Men's Latest</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                        <h2>Latest Sauces</h2>
+                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam saepe!</span>
                     </div>
                 </div>
             </div>
@@ -159,11 +174,11 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/men-01.jpg" alt="">
+                                    <img src="media/home_page_images/sauce_hennylemonpeper2_resized2.jpg" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <h4>Classic Spring</h4>
-                                    <span>$120.00</span>
+                                    <h4>Honey Lemon Pepper</h4>
+                                    <span>£4.95</span>
                                     <ul class="stars">
                                         <li><i class="fa fa-star"></i></li>
                                         <li><i class="fa fa-star"></i></li>
@@ -183,10 +198,10 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/men-02.jpg" alt="">
+                                    <img src="media/home_page_images/spicebbq_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <h4>Air Force 1 X</h4>
+                                    <h4>Spicy BBQ</h4>
                                     <span>$90.00</span>
                                     <ul class="stars">
                                         <li><i class="fa fa-star"></i></li>
@@ -207,10 +222,10 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/men-03.jpg" alt="">
+                                    <img src="media/home_page_images/hothoney_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <h4>Love Nana ‘20</h4>
+                                    <h4>Hot Honey & Pepper</h4>
                                     <span>$150.00</span>
                                     <ul class="stars">
                                         <li><i class="fa fa-star"></i></li>
@@ -231,10 +246,10 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/men-01.jpg" alt="">
+                                    <img src="media/home_page_images/tropical_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <h4>Classic Spring</h4>
+                                    <h4>Tropical Fruits</h4>
                                     <span>$120.00</span>
                                     <ul class="stars">
                                         <li><i class="fa fa-star"></i></li>
@@ -259,7 +274,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-heading">
-                        <h2>Women's Latest</h2>
+                        <h2>Latest Coulis</h2>
                         <span>Details to details is what makes Hexashop different from the other themes.</span>
                     </div>
                 </div>
@@ -280,7 +295,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/women-01.jpg" alt="">
+                                    <img src="media/home_page_images/sauce_veryhit_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>New Green Jacket</h4>
@@ -304,7 +319,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/women-02.jpg" alt="">
+                                    <img src="media/home_page_images/sauce_veryhit_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Dress</h4>
@@ -328,7 +343,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/women-03.jpg" alt="">
+                                    <img src="media/home_page_images/sauce_veryhit_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Spring Collection</h4>
@@ -352,7 +367,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/women-01.jpg" alt="">
+                                    <img src="media/home_page_images/sauce_veryhit_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Spring</h4>
@@ -380,7 +395,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-heading">
-                        <h2>Kid's Latest</h2>
+                        <h2>Latest Giftsets</h2>
                         <span>Details to details is what makes Hexashop different from the other themes.</span>
                     </div>
                 </div>
@@ -401,7 +416,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/kid-01.jpg" alt="">
+                                    <img src="media/home_page_images/giftset_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>School Collection</h4>
@@ -425,7 +440,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/kid-02.jpg" alt="">
+                                    <img src="media/home_page_images/giftset_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Summer Cap</h4>
@@ -449,7 +464,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/kid-03.jpg" alt="">
+                                    <img src="media/home_page_images/giftset_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Kid</h4>
@@ -473,7 +488,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <img src="media/home_page_images/kid-01.jpg" alt="">
+                                    <img src="media/home_page_images/giftset_resized.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Spring</h4>
@@ -501,22 +516,23 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="left-content">
-                        <h2>Explore Our Products</h2>
-                        <span>You are allowed to use this HexaShop HTML CSS template. You can feel free to modify or
-                            edit this layout. You can convert this template as any kind of ecommerce CMS theme as you
-                            wish.</span>
+                        <h2>Spicy Rye's Recipes</h2>
+                        <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique ipsa rem magni numquam
+                            quas fugit soluta libero cumque reprehenderit nihil, aut aliquid, accusantium, minima
+                            laboriosam autem sint. Temporibus, totam explicabo..</span>
                         <div class="quote">
                             <i class="fa fa-quote-left"></i>
-                            <p>You are not allowed to redistribute this template ZIP file on any other website.</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique ipsa rem magni
+                                numquam.</p>
                         </div>
-                        <p>There are 5 pages included in this HexaShop Template and we are providing it to you for
-                            absolutely free of charge at our TemplateMo website. There are web development costs for us.
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora modi voluptatem iure
+                            dolorum ad consequatur sunt qui quia, neque eaque veritatis laboriosam delectus!
                         </p>
-                        <p>If this template is beneficial for your website or business, please kindly <a rel="nofollow"
-                                href="https://paypal.me/templatemo" target="_blank">support us</a> a little via PayPal.
-                            Please also tell your friends about our great website. Thank you.</p>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro suscipit in eum hic nam
+                            deleniti a dolorem, qui vel, unde, consequuntur id animi pariatur. Qui similique possimus
+                            ipsam eum dolorum.</p>
                         <div class="main-border-button">
-                            <a href="products.html">Discover More</a>
+                            <a href="products.html">Recipes</a>
                         </div>
                     </div>
                 </div>
@@ -525,23 +541,23 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="leather">
-                                    <h4>Leather Bags</h4>
+                                    <h4>Spicy Rye's Shepherds Pie</h4>
                                     <span>Latest Collection</span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="first-image">
-                                    <img src="media/home_page_images/explore-image-01.jpg" alt="">
+                                    <img src="media/home_page_images/recipes_shepherdspie.jpg" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="second-image">
-                                    <img src="media/home_page_images/explore-image-02.jpg" alt="">
+                                    <img src="media/home_page_images/recipes_pasta.jpg" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="types">
-                                    <h4>Different Types</h4>
+                                    <h4>One Pot Pasta</h4>
                                     <span>Over 304 Products</span>
                                 </div>
                             </div>
@@ -696,7 +712,7 @@
     {% include "includes/footer.html" %}
     {% include "home/includes/home_page_js_includes.html" %}
 
-  
+
 
 
 

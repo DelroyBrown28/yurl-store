@@ -1,5 +1,6 @@
 from enum import unique
 from django.db import models
+from PIL import Image
 from django.db.models.fields import CharField, EmailField, TextField
 from django.db.models.fields.json import HasKeyLookup
 from products.models import Category
@@ -7,6 +8,9 @@ from django.utils.html import mark_safe
 from djrichtextfield.models import RichTextField
 from colorfield.fields import ColorField
 from phonenumber_field.modelfields import PhoneNumberField
+from smartfields import fields
+from smartfields.dependencies import FileDependency
+from smartfields.processors import ImageProcessor
 
 
 class GlobalSiteStyling(models.Model):
@@ -168,6 +172,48 @@ class HomePageCustomisation(models.Model):
 
     def __str__(self):
         return self.home_page_styling
+
+class HomePage_Customisation(models.Model):
+    home_page_styling = models.CharField(
+        blank=False, null=False, max_length=100, default="")
+    left_banner_image = fields.ImageField(null=True, blank=True,
+                              upload_to='home_page_images')
+    overlaying_text_left= RichTextField(default='')
+    right_banner_image_1 = fields.ImageField(null=True, blank=True,
+                              upload_to='home_page_images')
+    right_banner_image_2 = fields.ImageField(null=True, blank=True,
+                              upload_to='home_page_images')
+    right_banner_image_3 = fields.ImageField(null=True, blank=True,
+                              upload_to='home_page_images')
+    right_banner_image_4 = fields.ImageField(null=True, blank=True,
+                              upload_to='home_page_images')
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.left_banner_image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (790,680)
+            img.thumbnail(output_size)
+            img.save(self.left_banner_image.path)
+
+    class Meta:
+        verbose_name_plural = '     Home Page 2'
+
+    # def save(self, *args, **kwargs):
+    #     if self.do_not_display == False:
+    #         try:
+    #             temp = HomePage_Customisation.objects.get(do_not_display=False)
+    #             if self != temp:
+    #                 temp.do_not_display = True
+    #                 temp.save()
+    #         except HomePageCustomisation.DoesNotExist:
+    #             pass
+    #     super(HomePage_Customisation, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.home_page_styling
+
 
 
 class HeaderCustomisation(models.Model):

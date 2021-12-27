@@ -9,7 +9,8 @@ from page_customisations.models import (HomePageCustomisation,
                                         TestimonialsPageCustomisation,
                                         AddTestimonial,
                                         CTACard,
-                                        ProductBanner)
+                                        ProductBanner,
+                                        HomePage_Customisation)
 from BasicTemplateMain.admin import superadmin
 
 
@@ -130,6 +131,22 @@ class HomePageCustomisationAdmin(admin.ModelAdmin):
     # # This will help you to disable delete functionaliyt
     # def has_delete_permission(self, request, obj=None):
     #     return False
+
+
+class HomePage_CustomisationAdmin(admin.ModelAdmin):
+     fieldsets = (
+        ('Header Styling', {
+            "fields": (
+                'home_page_styling',
+                'left_banner_image',
+                'overlaying_text_left',
+                'right_banner_image_1',
+                'right_banner_image_2',
+                'right_banner_image_3',
+                'right_banner_image_4',)
+        }),
+   
+     )
 
 
 class GlobalSiteStylingAdmin(admin.ModelAdmin):
@@ -537,6 +554,7 @@ superadmin.register() to register for superuser admin
 superadmin.register(ProductBanner, ProductBannerAdmin)
 superadmin.register(CTACard, CTACardAdmin)
 superadmin.register(HomePageCustomisation, HomePageCustomisationAdmin)
+superadmin.register(HomePage_Customisation, HomePage_CustomisationAdmin)
 superadmin.register(AddTestimonial, AddTestimonialAdmin)
 superadmin.register(TestimonialsPageCustomisation,
                     TestimonialsCustomisationAdmin)

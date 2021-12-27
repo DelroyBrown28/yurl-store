@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'jet.dashboard',
     'jet',
     # Django Stuff
+    'smartfields',
     'django.contrib.admin',
     'djrichtextfield',
     'django.contrib.auth',
@@ -113,6 +114,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -138,6 +140,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
+                'context_processors.context_processors.home_page_styles_processor',
                 'context_processors.context_processors.categories_processor',
                 'context_processors.context_processors.add_testimonial_processor',
                 'context_processors.context_processors.products_processor',

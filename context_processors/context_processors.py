@@ -7,12 +7,22 @@ from page_customisations.views import (HeaderCustomisation,
                                        FooterCustomisation,
                                        TestimonialsPageCustomisation,
                                        AddTestimonial)
+from home.views import HomePage_Customisation
 
 
 def global_styles_processor(request):
     return {
         'global_styles': GlobalSiteStyling.objects.all(),
     }
+
+# Home Page Processor
+
+
+def home_page_styles_processor(request):
+    return {
+        'home_page_styles': HomePage_Customisation.objects.all(),
+    }
+# Home Page Processor
 
 
 def header_customisation_processor(request):
@@ -62,6 +72,7 @@ def testimonials_customisation_processor(request):
         'testimonials_customisation': TestimonialsPageCustomisation.objects.all(),
 
     }
+
 
 def testimonials_push(request):
     return {

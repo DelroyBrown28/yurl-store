@@ -668,6 +668,9 @@
   content: "\f074";
 }
 
+.fa-pepper-hot::before {
+  content: "\f816"; }
+
 .fa-comment:before {
   content: "\f075";
 }
